@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "468291113371",
+    "project_id": "fluttercourse-128f2",
+    "storage_bucket": "fluttercourse-128f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468291113371:android:73726b06b1ed92915d113e",
+        "android_client_info": {
+          "package_name": "com.example.firebase2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGEwIY4Ww0NOR786mAtAjT-kKqWX4YtN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
