@@ -24,7 +24,10 @@ class Auth_local extends Translations {
           "hintn2": "ادخل اسمك الاخير",
           "phone": "رقم الهاتف",
           "hintphone": "ادخل رقم الهاتف",
-          "loginP": "لديك حساب؟"
+          "loginP": "لديك حساب؟",
+          //Home page
+          "serch": "البحث",
+          "see all": "عرض المزيد"
         },
         "en": {
           "Login": "Login",
@@ -38,7 +41,6 @@ class Auth_local extends Translations {
           "Regester": "Don't have on account?",
           "Verify": "التحقق",
           "massege": "سيصلك رمز التحقق على البريد الالكتروني",
-
           "sinin": "Regester",
           //Signup page
           "signup": "SiginUp",
@@ -51,7 +53,10 @@ class Auth_local extends Translations {
           "hintphone": "Enter your phone Number",
           "loginP": "You have account? ",
           "Verify": "Verify",
-          "massege": "Check your Email to Verify"
+          "massege": "Check your Email to Verify",
+          //Home page
+          "serch": "serch",
+          "see all": "see all"
         }
       };
 }

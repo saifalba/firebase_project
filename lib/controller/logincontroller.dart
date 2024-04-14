@@ -1,10 +1,7 @@
-import 'dart:math';
-
-import 'package:firebase2/main.dart';
+import "../main.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginController extends GetxController {
@@ -13,8 +10,6 @@ class LoginController extends GetxController {
   GlobalKey<FormState> formstat = GlobalKey<FormState>();
   final FirebaseAuth autt = FirebaseAuth.instance;
   void onlogin() {
-    print("email: " + emailcontroller.text);
-    print("pass: " + passwordcontroller.text);
     loginAccount(emailcontroller.text, passwordcontroller.text);
   }
 
@@ -24,13 +19,13 @@ class LoginController extends GetxController {
         await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
 
-        print("${autt.currentUser!.emailVerified}" + "=============");
-        // if (autt.currentUser!.emailVerified == true) {
-        sharedpref!.setString("id", "1");
-        Get.offAllNamed("/home");
-        // } else {
-        //   autt.currentUser!.sendEmailVerification();
-        // }
+        print("${autt.currentUser!.emailVerified}" "=============");
+        if (autt.currentUser!.emailVerified == true) {
+          sharedpref!.setString("id", "1");
+          Get.offAllNamed("/home");
+        } else {
+          autt.currentUser!.sendEmailVerification();
+        }
 
         return "";
       } on FirebaseAuthException catch (e) {
@@ -51,21 +46,26 @@ class LoginController extends GetxController {
 
 //===================login with google
 
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  Future<User?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      User? user = userCredential.user;
 
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+      return user;
+    } catch (e) {
+      print("Error during Google Sign-In: $e");
+      return null;
+    }
   }
 }

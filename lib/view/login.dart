@@ -1,6 +1,8 @@
+
 import 'package:firebase2/components/costumlogo.dart';
 import 'package:firebase2/components/textformfeld.dart';
 import 'package:firebase2/controller/logincontroller.dart';
+import 'package:firebase2/core/constant/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,12 +13,13 @@ class Loginpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
+    // Get.find();
 
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30),
       child: ListView(children: [
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Form(
@@ -24,26 +27,28 @@ class Loginpage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
+              const Center(
                 child: Costumlogo(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 "Login".tr,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               Text(
                 "logintxt".tr,
-                style: TextStyle(fontSize: 15, color: Colors.grey),
+                style: const TextStyle(fontSize: 15, color: Colors.grey),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Text(
                 "Email".tr,
-                style: TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+                style:
+                    const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
               ),
               Costomtextform(
                 hintext: "Email_hint".tr,
@@ -52,14 +57,16 @@ class Loginpage extends StatelessWidget {
                   if (val == "") {
                     return "can't to be Empty";
                   }
+                  return null;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 "Password".tr,
-                style: TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+                style:
+                    const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
               ),
               Costomtextform(
                 hintext: "Password_hint".tr,
@@ -68,10 +75,11 @@ class Loginpage extends StatelessWidget {
                   if (val == "") {
                     return "can't to be Empty";
                   }
+                  return null;
                 },
               ),
               Container(
-                padding: EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.only(top: 15),
                 alignment: Alignment.centerRight,
                 child: InkWell(
                   onTap: () {
@@ -84,27 +92,28 @@ class Loginpage extends StatelessWidget {
               Container(
                 width: double.infinity / 20,
                 height: 50,
-                margin: EdgeInsets.only(top: 15),
+                margin: const EdgeInsets.only(top: 15),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Colors.blue),
+                    color: Appcolor.primeryColor),
                 child: MaterialButton(
                   onPressed: () {
                     loginController.onlogin();
                     // Get.snackbar("Verify".tr, "massege".tr,
                     //     backgroundColor: Colors.blue);
                   },
-                  child: Text(
-                    "Login".tr,
-                  ),
-                  color: Colors.blue,
+                  color: Appcolor.primeryColor,
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)),
+                  child: Text(
+                    "Login".tr,
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
               ),
               Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   alignment: Alignment.center,
                   width: double.infinity,
                   child: Text("other".tr)),
@@ -116,25 +125,25 @@ class Loginpage extends StatelessWidget {
             alignment: Alignment.center,
             width: 100,
             height: 60,
-            margin: EdgeInsets.only(top: 15),
+            margin: const EdgeInsets.only(top: 15),
             // padding: EdgeInsets.all(5),
             child: MaterialButton(
               onPressed: () {
                 loginController.signInWithGoogle();
               },
+              color: Colors.grey[200],
               child: Image.asset(
                 "images/google.png",
                 height: 30,
                 width: 30,
               ),
-              color: Colors.grey[200],
             ),
           ),
           Container(
             alignment: Alignment.center,
             width: 100,
             height: 60,
-            margin: EdgeInsets.only(top: 15),
+            margin: const EdgeInsets.only(top: 15),
             // padding: EdgeInsets.all(5),
             child: MaterialButton(
               onPressed: () {
@@ -142,16 +151,16 @@ class Loginpage extends StatelessWidget {
 
                 // FirebaseAuth.instance.currentUser?.sendEmailVerification();
               },
+              color: Colors.grey[200],
               child: Image.asset(
                 "images/f.png",
                 height: 30,
                 width: 30,
               ),
-              color: Colors.grey[200],
             ),
           ),
         ]),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Row(
@@ -164,7 +173,7 @@ class Loginpage extends StatelessWidget {
               },
               child: Text(
                 "sinin".tr,
-                style: TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Appcolor.primeryColor),
               ),
             ),
           ],

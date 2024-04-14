@@ -1,10 +1,13 @@
-import 'package:firebase2/Middleware/auth_middleware.dart';
+import 'package:firebase2/controller/control_view.dart';
+import 'package:firebase2/controller/mybainding.dart';
 import 'package:firebase2/localization/auth_local.dart';
-import 'package:firebase2/localization/home_local.dart';
-import 'package:firebase2/view/home.dart';
+import 'package:firebase2/view/category.dart';
+import 'package:firebase2/view/detailsView.dart';
 import 'package:firebase2/view/login.dart';
 import 'package:firebase2/view/signup.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase2/view/test.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -15,7 +18,25 @@ SharedPreferences? sharedpref;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedpref = await SharedPreferences.getInstance();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: "AIzaSyAGEwIY4Ww0NOR786mAtAjT-kKqWX4YtN0",
+          appId: "1:468291113371:android:73726b06b1ed92915d113e",
+          messagingSenderId: "468291113371",
+          projectId: "fluttercourse-128f2"));
+  if (!kDebugMode) {
+    await FirebaseAppCheck.instance.activate(
+      androidProvider: AndroidProvider.playIntegrity,
+      appleProvider: AppleProvider.appAttest,
+      webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
+    );
+  } else {
+    await FirebaseAppCheck.instance.activate(
+      androidProvider: AndroidProvider.debug,
+      appleProvider: AppleProvider.debug,
+    );
+  }
+
   runApp(const MyApp());
 }
 
@@ -24,6 +45,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get.lazyPut(() => DetailsView(model: " "));
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -35,15 +57,19 @@ class MyApp extends StatelessWidget {
         // )
       ),
       locale: Get.deviceLocale,
-      translations: Home_local(),
+      translations: Auth_local(),
+      initialBinding: Mybinding(),
       getPages: [
         // ignore: prefer_const_constructors
         GetPage(
-            name: "/",
-            page: () => Loginpage(),
-            middlewares: [Auth_middleware()]),
-        GetPage(name: "/signup", page: () => SignupPage()),
-        GetPage(name: "/home", page: () => HomePage())
+          name: "/",
+          page: () => const Loginpage(),
+        ),
+        GetPage(name: "/signup", page: () => const SignupPage()),
+        GetPage(name: "/home", page: () => const Control_view()),
+        GetPage(name: "/test", page: () => const TestPage()),
+        GetPage(name: "/details", page: () => DetailsView()),
+        GetPage(name: "/category", page: () => const Category_page())
       ],
     );
   }

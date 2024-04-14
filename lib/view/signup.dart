@@ -12,25 +12,25 @@ class SignupPage extends StatelessWidget {
     SignupController signupController = Get.put(SignupController());
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30),
       child: ListView(children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "signup".tr,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
             Text(
               "signuptxt".tr,
-              style: TextStyle(fontSize: 15, color: Colors.grey),
+              style: const TextStyle(fontSize: 15, color: Colors.grey),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Text(
               "fname".tr,
-              style: TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+              style: const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
             ),
             Costomtextform(
               hintext: "hintn1".tr,
@@ -39,14 +39,15 @@ class SignupPage extends StatelessWidget {
                 if (val == "") {
                   return "can't to be Empty";
                 }
+                return null;
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
               "lname".tr,
-              style: TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+              style: const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
             ),
             Costomtextform(
               hintext: "hintn2".tr,
@@ -55,14 +56,15 @@ class SignupPage extends StatelessWidget {
                 if (val == "") {
                   return "can't to be Empty";
                 }
+                return null;
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
               "phone".tr,
-              style: TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+              style: const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
             ),
             Costomtextform(
               hintext: "hintphone".tr,
@@ -71,14 +73,15 @@ class SignupPage extends StatelessWidget {
                 if (val == "") {
                   return "can't to be Empty";
                 }
+                return null;
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
               "Email".tr,
-              style: TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+              style: const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
             ),
             Costomtextform(
               hintext: "Email_hint".tr,
@@ -87,14 +90,15 @@ class SignupPage extends StatelessWidget {
                 if (val == "") {
                   return "can't to be Empty";
                 }
+                return null;
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
               "Password".tr,
-              style: TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+              style: const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
             ),
             Costomtextform(
               hintext: "Password_hint".tr,
@@ -103,10 +107,11 @@ class SignupPage extends StatelessWidget {
                 if (val == "") {
                   return "can't to be Empty";
                 }
+                return null;
               },
             ),
             Container(
-              padding: EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 15),
               alignment: Alignment.centerRight,
               child: InkWell(
                 onTap: () {},
@@ -116,26 +121,26 @@ class SignupPage extends StatelessWidget {
             Container(
               width: double.infinity / 20,
               height: 50,
-              margin: EdgeInsets.only(top: 15),
+              margin: const EdgeInsets.only(top: 15),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50), color: Colors.blue),
               child: MaterialButton(
                 onPressed: () {
                   signupController.onsignup();
-                  Get.offNamed("/");
-                  Get.snackbar("Verify".tr, "massege".tr);
+                  //Get.offNamed("/");
+                  // Get.snackbar("Verify".tr, "massege".tr);
                 },
-                child: Text(
-                  "signup".tr,
-                ),
                 color: Colors.blue,
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)),
+                child: Text(
+                  "signup".tr,
+                ),
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 alignment: Alignment.center,
                 width: double.infinity,
                 child: Text("other".tr)),
@@ -146,36 +151,36 @@ class SignupPage extends StatelessWidget {
             alignment: Alignment.center,
             width: 100,
             height: 60,
-            margin: EdgeInsets.only(top: 15),
+            margin: const EdgeInsets.only(top: 15),
             // padding: EdgeInsets.all(5),
             child: MaterialButton(
               onPressed: () {},
+              color: Colors.grey[200],
               child: Image.asset(
                 "images/google.png",
                 height: 30,
                 width: 30,
               ),
-              color: Colors.grey[200],
             ),
           ),
           Container(
             alignment: Alignment.center,
             width: 100,
             height: 60,
-            margin: EdgeInsets.only(top: 15),
+            margin: const EdgeInsets.only(top: 15),
             // padding: EdgeInsets.all(5),
             child: MaterialButton(
               onPressed: () {},
+              color: Colors.grey[200],
               child: Image.asset(
                 "images/f.png",
                 height: 30,
                 width: 30,
               ),
-              color: Colors.grey[200],
             ),
           ),
         ]),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Row(
@@ -188,7 +193,7 @@ class SignupPage extends StatelessWidget {
               },
               child: Text(
                 "Login".tr,
-                style: TextStyle(color: Colors.blue),
+                style: const TextStyle(color: Colors.blue),
               ),
             ),
           ],

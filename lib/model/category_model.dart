@@ -1,18 +1,19 @@
-// import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:flutter/material.dart';
 
-// class Category_Model {
-//   String name, image;
-//   Category_Model({required this.name, required this.image});
+class CategoryModel {
+  String name, image;
+  CategoryModel({required this.name, required this.image});
 
-//   fromJson(Map<dynamic, dynamic> map) {
-//     if (map == null) {
-//       return;
-//     }
-//     name = map["name"];
-//     image = map["image"];
-//   }
+  factory CategoryModel.fromjesom(DocumentSnapshot snapshot) {
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    return CategoryModel(
+      name: data['name'] as String,
+      image: data['image'] as String,
+    );
+  }
 
-//   toJson() {
-//     return {'name': name, 'image': image};
-//   }
-// }
+  toJson() {
+    return {'name': name, 'image': image};
+  }
+}
